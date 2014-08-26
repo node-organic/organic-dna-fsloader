@@ -1,0 +1,30 @@
+{
+  "name": "organic-dna-fsloader",
+  "version": "0.0.1",
+  "description": "File System based loading of dna methods.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "glob": "^4.0.5",
+    "organic-dna-branches": "^0.0.1"
+  },
+  "devDependencies": {
+    "organic": "^0.2.0",
+    "jasmine-node": "^1.14.5"
+  },
+  "scripts": {
+    "test": "jasmine-node ./test"
+  },
+  "author": "Boris Filipov",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/outbounder/organic-dna-fsloader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/outbounder/organic-dna-fsloader/issues"
+  },
+  "homepage": "https://github.com/outbounder/organic-dna-fsloader"
+}
