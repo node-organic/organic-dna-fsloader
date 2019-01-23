@@ -1,6 +1,6 @@
 {
   "name": "organic-dna-fsloader",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "File System based loading of dna methods.",
   "main": "index.js",
   "directories": {
