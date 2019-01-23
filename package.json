@@ -15,7 +15,11 @@
     "organic": "^0.2.0"
   },
   "scripts": {
-    "test": "jasmine-node ./test"
+    "test": "jasmine-node ./test",
+    "release-patch": "npm version patch",
+    "release-minor": "npm version minor",
+    "release-major": "npm version major",
+    "postversion": "npm publish && git push --tags && git push origin master"
   },
   "author": "Boris Filipov",
   "license": "MIT",
