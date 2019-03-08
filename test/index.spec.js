@@ -37,9 +37,11 @@ describe("DNA", function(){
       expect(dna.membrane).toBeDefined();
       expect(dna.membrane.organel1).toBeDefined();
       expect(dna.membrane.organel1.type).toBeDefined();
+      expect(dna.membrane.organel2).toBeDefined();
       expect(dna.development.membrane).toBeDefined();
       expect(dna.development.membrane.organel2).toBeDefined();
       expect(dna.development.membrane.organel2.source).toBeDefined();
+      expect(dna['yaml-support'].organel.type).toBe('value')
       next();
     });
   });

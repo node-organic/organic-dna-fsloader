@@ -1,0 +1,7 @@
+---
+test:
+  yaml:
+    - true
+---
+test2:
+  scalar: 1
