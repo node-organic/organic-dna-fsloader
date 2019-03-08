@@ -59,10 +59,11 @@ module.exports.loadFile = function(dna, filePath, namespace, callback){
         break
         case '.yaml':
         case '.yml':
-          var docs = YAML.parseAllDocuments(data)
-          data = {}
-          for(var i = 0; i < docs.length; i++) {
-            Object.assign(data, docs[i].toJSON())
+          data = YAML.parseAllDocuments(data).map(function (item) {
+            return item.toJSON()
+          })
+          if (data.length === 1) {
+            data = data[0]
           }
         break
       }

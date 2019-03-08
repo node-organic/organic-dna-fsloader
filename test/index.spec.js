@@ -42,6 +42,9 @@ describe("DNA", function(){
       expect(dna.development.membrane.organel2).toBeDefined();
       expect(dna.development.membrane.organel2.source).toBeDefined();
       expect(dna['yaml-support'].organel.type).toBe('value')
+      expect(dna.development.new.object).toBe(true)
+      expect(dna.development.new[0].test).toBeDefined()
+      expect(dna.development.new[1].test2.scalar).toBe(1)
       next();
     });
   });
