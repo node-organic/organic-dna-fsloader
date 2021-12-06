@@ -59,13 +59,16 @@ module.exports.loadFile = function(dna, filePath, namespace, callback){
         break
         case '.yaml':
         case '.yml':
-          data = YAML.parseAllDocuments(data).map(function (item) {
-            return item.toJSON()
-          })
-          if (data.length === 1) {
-            data = data[0]
+          let parsed = YAML.parseDocument(data)
+          if (parsed.errors && parsed.errors.length > 0) {
+            parsed = YAML.parseAllDocuments(data).map(function (item) {
+              return item.toJSON()
+            })
+          } else {
+            parsed = parsed.toJSON()
           }
-        break
+          data = parsed
+          break
       }
     }catch(e) {
       return callback(new Error("Failed to parse "+data+" at "+filePath+" given error "+e.message))
