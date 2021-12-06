@@ -60,10 +60,18 @@ module.exports.loadFile = function(dna, filePath, namespace, callback){
         case '.yaml':
         case '.yml':
           let parsed = YAML.parseDocument(data)
-          if (parsed.errors && parsed.errors.length > 0) {
-            parsed = YAML.parseAllDocuments(data).map(function (item) {
-              return item.toJSON()
-            })
+          if (parsed.errors.length > 0) {
+            if (parsed.errors[0].code === 'MULTIPLE_DOCS') {
+              parsed = YAML.parseAllDocuments(data)
+              parsed = parsed.map(function (item) {
+                if (item.errors && item.errors.length > 0) {
+                  throw item.errors[0]
+                }
+                return item.toJSON()
+              })
+            } else {
+              throw parsed.errors[0]
+            }
           } else {
             parsed = parsed.toJSON()
           }
@@ -71,7 +79,7 @@ module.exports.loadFile = function(dna, filePath, namespace, callback){
           break
       }
     }catch(e) {
-      return callback(new Error("Failed to parse "+data+" at "+filePath+" given error "+e.message))
+      return callback(new Error("Failed to parse " + filePath + " given error: " + e.message))
     }
     /* 
       quick merge into existing nodes
