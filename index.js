@@ -59,22 +59,15 @@ module.exports.loadFile = function(dna, filePath, namespace, callback){
         break
         case '.yaml':
         case '.yml':
-          let parsed = YAML.parseDocument(data)
-          if (parsed.errors.length > 0) {
-            if (parsed.errors[0].code === 'MULTIPLE_DOCS') {
-              parsed = YAML.parseAllDocuments(data)
-              parsed = parsed.map(function (item) {
-                if (item.errors && item.errors.length > 0) {
-                  throw item.errors[0]
-                }
-                return item.toJSON()
-              })
-            } else {
-              throw parsed.errors[0]
+          let parsed = null
+          parsed = YAML.parseAllDocuments(data)
+          parsed = parsed.map(function (item) {
+            if (item.errors && item.errors.length > 0) {
+              throw item.errors[0]
             }
-          } else {
-            parsed = parsed.toJSON()
-          }
+            return item.toJSON()
+          })
+          if (parsed.length === 1) parsed = parsed[0]
           data = parsed
           break
       }
